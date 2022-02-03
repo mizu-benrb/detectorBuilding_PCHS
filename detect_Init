@@ -6,11 +6,11 @@ Send "CONNECT ANALOG.IN 1 TO BB5"
 For n,1,100
 Send "READ ANALOG.IN 1"
 Get a
-Disp "ANALOG.IN =",a
+Disp "ANALOG.IN is",a
 ((a)/(16384))*3.3->v
 Disp v
 Wait 0.1
-EndFor
+End
 #First 2 lines find the resistance of R1, the detector. The next 2 lines convert the resistance into conductivity, which is then used to calculate concentration
 ((v)/(3.3))->r
 ((1000)/(r))-1000->f
