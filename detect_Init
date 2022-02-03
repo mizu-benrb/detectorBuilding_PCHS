@@ -1,1 +1,19 @@
-
+Define pchs_det01
+Prgm
+#Connects the analog input variable to port 5
+Send "CONNECT ANALOG.IN 1 TO BB5"
+#For 10 seconds, reads and outputs analog input's value, then calculate voltage out
+For n,1,100
+Send "READ ANALOG.IN 1"
+Get a
+Disp "ANALOG.IN =",a
+((a)/(16384))*3.3->v
+Disp v
+Wait 0.1
+EndFor
+#First 2 lines find the resistance of R1, the detector. The next 2 lines convert the resistance into conductivity, which is then used to calculate concentration
+((v)/(3.3))->r
+((1000)/(r))-1000->f
+((1)/(f))->c
+c*10*0.55->p
+#Depending on ppm concentration, changes which color leds activate
