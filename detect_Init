@@ -12,12 +12,7 @@ Disp V
 Wait 0.1
 End
 "First 2 lines find the resistance of R1, the detector. The next 2 lines convert the resistance into conductivity, which is then used to calculate concentration
-((v)/(3.3))->r
-((1000)/(r))-1000->f
-Disp f
-(F/500)->F
-((1)/(f))->c
-c*10000*0.55->p
+(305V^2+1165V-54.3)->P
 Disp p
 "LED ranges
 "1=Green, 2=Blue, 3=Red
