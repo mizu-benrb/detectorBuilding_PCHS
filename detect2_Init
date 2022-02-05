@@ -12,7 +12,7 @@ Disp V
 Wait 0.1
 End
 "Use mathematical model to predict ppm
-(305V^2+1165V-54.3)->P
+(1694V-203)->P
 round(P,0)->P
 Disp p
 "LED ranges
