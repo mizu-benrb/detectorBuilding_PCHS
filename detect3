@@ -1,0 +1,43 @@
+Define pchs_det01
+Prgm
+#Connects LEDs to BB 1, 2, 3
+"LED ranges
+"1=Green, 2=Blue, 3=Red
+Send("Connect LED 1 to BB 1")
+Send("Connect LED 2 to BB 2")
+Send("Connect LED 3 to BB 3")
+#Turns off all LEDs from previous sessions
+Send("Set LED 1 OFF")
+Send("Set LED 2 OFF")
+Send("Set LED 3 OFF")
+"Connects the analog input variable to port 5
+Send ("CONNECT ANALOG.IN 1 TO BB5")
+"For 10 seconds, reads and outputs analog input's value, then calculate voltage out
+For (n,1,50)
+Send ("READ ANALOG.IN 1")
+Get (A)
+Disp "ANALOG.IN is",A
+((A)/(16384))*3.3->V
+Disp V
+Wait 0.1
+End
+"Use mathematical model to predict ppm
+(35.9e^(3.35x))->P
+round(P,0)->P
+Disp p
+
+#Conditional statements
+If P>0:Then
+Send("SET LED 1 ON")
+If P>1440
+Then
+Send("SET LED 1 OFF")
+Send("SET LED 2 ON")
+End
+If P>3060
+Then
+Send("SET LED 2 OFF")
+SEND("SET LED 3 ON")
+End
+Wait 10
+End
